@@ -2,8 +2,10 @@ import React,{useState} from "react";
 import { ReactDOM } from "react";
 import Logo from "../../images/Logo.png"
 import { Link } from "react-router-dom";
+import useNetwork from "../utils/useNetwork";
 const Header = () => {
  const [headerStatus, setHeaderStatus] = useState("Login")
+ const status=useNetwork()
  const clickonLogin=()=>
  {
   setHeaderStatus(headerStatus=="Login"?"Logout":"Login")
@@ -15,6 +17,9 @@ const Header = () => {
         </div>
         <div className="menu_items_cont">
           <ul>
+          <li>
+            Online Status:{!status ? "✅" :"🔴"}
+            </li>
             <li>
              <Link to="/">Home</Link>
             </li>

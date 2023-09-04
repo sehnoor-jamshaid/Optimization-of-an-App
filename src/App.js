@@ -1,16 +1,20 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import ReactDom from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
-import AboutUs from "./components/AboutUs";
 import Error from "./components/Error";
 import RestuarantMenu from "./components/RestuarantMenu";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom"; // Import correct components
 import ContactUs from "./components/ContactUs";
+import useNetwork from "./utils/useNetwork";
+import Shimmer from "./components/Shimmer";
+const AboutUs = lazy(() => import("./components/AboutUs"));
 
 const root = ReactDom.createRoot(document.getElementById("root"));
 
 const App = () => {
+  const status = useNetwork();
+
   return (
     <>
       <Header />
@@ -27,7 +31,11 @@ const AppRoutes = createBrowserRouter([
     children: [
       {
         path: "/about-us",
-        element: <AboutUs />,
+        element: (
+          <Suspense fallback={<Shimmer />}>
+            <AboutUs />
+          </Suspense>
+        ),
       },
       {
         path: "/contact-us",

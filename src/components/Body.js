@@ -67,7 +67,7 @@ const Body = () => {
         </div>
       ) : (
         <div className="cards_flex" style={{padding:"2rem 2rem"}}>
-      {  [1, 2, 3, 4, 5, 6].map((val, ind) => <Shimmer key={ind} /> )}
+        <Shimmer/>
         </div> )}
       
     </>
