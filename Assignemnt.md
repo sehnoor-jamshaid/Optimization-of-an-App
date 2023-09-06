@@ -1,40 +1,37 @@
-Hooks:
+Synonyms of Lazy Loading:
+1- Lazy loading
+2- code splitting
+3- chunking
+4- Dynamic Code Splitting
 
-Folder Structure:
-1- All the components come under the component folder and should have a capitalized name.
-2- All the hard coded variables in utils folder, all constants should be defined in snake case and capital letters.
-3- In utils folder mockData the dummy data is defined.
+When and why do we need lazy
+When our application grows heavy and quite bulky having multiple pages then a concept arises which is lazy loading means by lazy loading we will not load the whole application when component renders but load only the pages which are needed.
 
-Exports Imports:
-There are two types of exports 1- Default 2- Named Default
-Default export is imported without {} and named export is imported with {}
-Export default Component
-Import Component from “path”
+What is Suspense
+Suspense requires a fallback and our component is wrapped inside it which is concerned to lazy load. It means when user click on such page which intends to lazy load requires few ms or a little time to load to be present in dom so for that particular time we need to show something on screen which is interactive with respect to user experience so for that reason Suspense is needed.
 
-Export const name=””;
-Import {Name} from “path”
+Error: A component Suspended while loading a synchronous input….
+This error comes when a concerned lazy loading component is not wrapped in Suspense because a little time is required to load that particular component and for that particular time the component gets suspended and the error occurs by wrapping it inside Suspense and providing fallback it will work as expected.
 
-Virtual DOM and Diffing Algo
-React is fast because of Virtual DOM so the question arises what is virtual DOM it is a representation of an actual DOM. An actual DOM is an html document having all div p and h1 tags all tags and virtual Dom is an object form of representation of it.So whenever there is a re render happens the diffing algo finds out the diff between the updated virtual DOM and previous DOM and then after pointing out the changes updates the DOM so it isn't a computational expensive operation. So behind the scenes diffing algo is used which is fastening the speed of React.
+When and Why do we need to Suspense
+1- Code Splitting:
+We need suspense when we have to make a component load lazily and Suspense is needed to load UI .
+2- Data Fetching:
+Since data fetching is asynchronous suspense will show loading UI till the data is fetched and is in the dom.
 
-Assignment:
+Advantages and Disadvantages of Code Splitting:
 
-1-Diff Exports
-1- Named Export:
-Export const name=”Sehnoor”
-Export const color=”yellow”
-Import {name,color} from “path” || import * as Components from “path” ; console.log(Components.name)
-This kind of export is known as named export.
+Advantages:
+1- Speed Optimization:
+2- Dynamic Code Loading
+3-  Faster Initial Page Load
 
-2- Default Export
-Export default Component;
-Import Component from “path”;
+Disadvantages:
+1- Network Calls:
+If the code is not big bulky and code splitting in those apps are not necessary and the app is divided in many chunks than if there is client side rendering then there won’t be network calls but in server rendering the network calls would gets increased resulting in overhead.
+2- Debugging Complexity:
+Since the code is not in dom and is loaded on demand so it becomes difficult to debug.
 
-2- Config.js
-Config js is used for configuration of API URL and API KEY which is used allover in the code.
-3-React Hooks:
-React hooks are the reason upon changing of states the UI is re rendered which updates the actual DOM. React Hooks triggers the state. 
-React Hooks are functions that allow you to "hook into" React state and lifecycle features from functional components. Before the introduction of hooks, these features were primarily available in class components. Hooks provide a more concise and intuitive way to manage state, perform side effects, and interact with React's lifecycle in functional components.
+3- Build Tools Required:
+Code splitting is dependent on build tools like webpack and configuration to some developers might be barrier.
 
-4- UseState Hooks
- Use State hook is used for state management; usestate returns  a current state variable and a function which when gets updated triggers the rerender of UI. Initially it is initialized to any value and upon change function to set state is called which auto magically reflect the same value to state variable .
